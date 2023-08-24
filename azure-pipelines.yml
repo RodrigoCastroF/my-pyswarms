@@ -39,7 +39,7 @@ stages:
         pip install -r requirements-dev.txt
       displayName: 'Install dependencies'
     - script: |
-        pytest tests/ --cov pyswarms --junit-xml=junit/test-results.xml --cov-report=xml --cov-report=html
+        pytest tests/ --cov my_pyswarms --junit-xml=junit/test-results.xml --cov-report=xml --cov-report=html
       displayName: 'Run tests with coverage'
     - task: PublishTestResults@2
       inputs:
@@ -60,7 +60,7 @@ stages:
     - task: PublishPipelineArtifact@0
       condition: and(eq(variables['python.version'], '3.7'), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
       inputs:
-          artifactName: 'pyswarms'
+          artifactName: 'my_pyswarms'
           targetPath: 'dist'
       displayName: 'Publish pipeline artifact'
 - stage: publish
@@ -76,7 +76,7 @@ stages:
       displayName: 'Use Python version'
     - task: DownloadPipelineArtifact@2
       inputs:
-        artifact: 'pyswarms'
+        artifact: 'my_pyswarms'
         path: 'dist'
       displayName: 'Download artifacts'
     - task: TwineAuthenticate@1

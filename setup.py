@@ -17,14 +17,14 @@ with open("requirements-dev.txt") as f:
 
 
 setup(
-    name="pyswarms",
+    name="my_pyswarms",
     version="1.3.0",
     description="A Python-based Particle Swarm Optimization (PSO) library.",
     long_description=readme,
     long_description_content_type="text/markdown",
     author="Lester James V. Miranda",
     author_email="ljvmiranda@gmail.com",
-    url="https://github.com/ljvmiranda921/pyswarms",
+    url="https://github.com/RodrigoCastroF/my-pyswarms",
     packages=find_packages(exclude=["docs", "tests"]),
     include_package_data=True,
     install_requires=requirements,
@@ -32,7 +32,7 @@ setup(
     extras_require={"test": dev_requirements},
     license="MIT license",
     zip_safe=False,
-    keywords="pyswarms",
+    keywords="my_pyswarms",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",

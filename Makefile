@@ -52,7 +52,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 
 lint: ## check style with flake8
-	flake8 pyswarms tests
+	flake8 my_pyswarms tests
 
 test: ## run tests quickly with the default Python
 	python setup.py test
@@ -61,7 +61,7 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source pyswarms setup.py test
+	coverage run --source my_pyswarms setup.py test
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
@@ -93,4 +93,4 @@ requirements.txt: requirements.in ## Generate requirements.txt file
 	venv/bin/pip-compile -o requirements.txt --no-header --no-annotate requirements.in
 
 requirements-dev.txt: requirements-dev.in ## Generate requirements-dev.txt file
-	venv/bin/pip-compile -o requirements-dev.txt --no-header --no-annotate requirements-dev.in 
+	venv/bin/pip-compile -o requirements-dev.txt --no-header --no-annotate requirements-dev.in
