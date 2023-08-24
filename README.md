@@ -1,3 +1,19 @@
+# This fork
+
+MyPySwarms is a fork of [PySwarms](https://github.com/ljvmiranda921/pyswarms) for personal use.
+
+The only difference with the original PySwarms is that a `max_time` parameter was added to the GlobalBestPSO optimize method:
+
+```python
+options = {'c1': 0.5, 'c2': 0.3, 'w':0.9}
+optimizer = ps.single.GlobalBestPSO(n_particles=10, dimensions=2, options=options)
+best_cost, best_pos = optimizer.optimize(ps.utils.functions.single_obj.sphere, iters=100, max_time=600)
+```
+
+This will execute the PSO algorithm until 100 iterations are reached or an execution time of 600 seconds is exceeded (whichever happens earlier).
+
+# Original PySwarms info
+
 ![PySwarms Logo](https://i.imgur.com/eX8oqPQ.png)
 ---
 
