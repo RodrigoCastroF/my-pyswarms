@@ -57,6 +57,7 @@ R.C. Eberhart in Particle Swarm Optimization [IJCNN1995]_.
 
 # Import standard library
 import logging
+import time
 
 # Import modules
 import numpy as np
@@ -157,7 +158,7 @@ class GlobalBestPSO(SwarmOptimizer):
         self.name = __name__
 
     def optimize(
-        self, objective_func, iters, n_processes=None, verbose=True, **kwargs
+        self, objective_func, iters, max_time=None, n_processes=None, verbose=True, **kwargs
     ):
         """Optimize the swarm for a number of iterations
 
@@ -201,19 +202,24 @@ class GlobalBestPSO(SwarmOptimizer):
         # Setup Pool of processes for parallel evaluation
         pool = None if n_processes is None else mp.Pool(n_processes)
 
+        start_time = time.time()
         self.swarm.pbest_cost = np.full(self.swarm_size[0], np.inf)
         ftol_history = deque(maxlen=self.ftol_iter)
         for i in self.rep.pbar(iters, self.name) if verbose else range(iters):
+
             # Compute cost for current position and personal best
             # fmt: off
             self.swarm.current_cost = compute_objective_function(self.swarm, objective_func, pool=pool, **kwargs)
             self.swarm.pbest_pos, self.swarm.pbest_cost = compute_pbest(self.swarm)
+
             # Set best_cost_yet_found for ftol
             best_cost_yet_found = self.swarm.best_cost
             self.swarm.best_pos, self.swarm.best_cost = self.top.compute_gbest(self.swarm)
+
             # fmt: on
             if verbose:
                 self.rep.hook(best_cost=self.swarm.best_cost)
+
             # Save to history
             hist = self.ToHistory(
                 best_cost=self.swarm.best_cost,
@@ -223,6 +229,7 @@ class GlobalBestPSO(SwarmOptimizer):
                 velocity=self.swarm.velocity,
             )
             self._populate_history(hist)
+
             # Verify stop criteria based on the relative acceptable cost ftol
             relative_measure = self.ftol * (1 + np.abs(best_cost_yet_found))
             delta = (
@@ -235,6 +242,7 @@ class GlobalBestPSO(SwarmOptimizer):
                 ftol_history.append(delta)
                 if all(ftol_history):
                     break
+
             # Perform options update
             self.swarm.options = self.oh(
                 self.options, iternow=i, itermax=iters
@@ -246,6 +254,11 @@ class GlobalBestPSO(SwarmOptimizer):
             self.swarm.position = self.top.compute_position(
                 self.swarm, self.bounds, self.bh
             )
+
+            if max_time is not None:
+                if time.time() - start_time > max_time:
+                    break
+
         # Obtain the final best_cost and the final best_position
         final_best_cost = self.swarm.best_cost.copy()
         final_best_pos = self.swarm.pbest_pos[
