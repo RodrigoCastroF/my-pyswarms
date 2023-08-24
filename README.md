@@ -1,10 +1,20 @@
-# This fork
+# About this fork
 
 MyPySwarms is a fork of [PySwarms](https://github.com/ljvmiranda921/pyswarms) for personal use.
 
-The only difference with the original PySwarms is that a `max_time` parameter was added to the GlobalBestPSO optimize method:
+The only difference with the original PySwarms is that a `max_time` parameter was added to the GlobalBestPSO optimize method.
+
+To install this fork, simply run the following command in your terminal:
+
+```
+pip install git+https://github.com/RodrigoCastroF/my-pyswarms
+```
+
+The following code snippet showcases how it is used:
 
 ```python
+import my_pyswarms as ps
+
 options = {'c1': 0.5, 'c2': 0.3, 'w':0.9}
 optimizer = ps.single.GlobalBestPSO(n_particles=10, dimensions=2, options=options)
 best_cost, best_pos = optimizer.optimize(ps.utils.functions.single_obj.sphere, iters=100, max_time=600)
@@ -12,7 +22,10 @@ best_cost, best_pos = optimizer.optimize(ps.utils.functions.single_obj.sphere, i
 
 This will execute the PSO algorithm until 100 iterations are reached or an execution time of 600 seconds is exceeded (whichever happens earlier).
 
-# Original PySwarms info
+---
+---
+
+# Original PySwarms
 
 ![PySwarms Logo](https://i.imgur.com/eX8oqPQ.png)
 ---
@@ -26,8 +39,8 @@ This will execute the PSO algorithm until 100 iterations are reached or an execu
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pyswarms/Issues)
 
-> **NOTICE**: I am not actively maintaining this repository anymore. My research interests have changed in the past few years. 
-> I highly recommend checking out [scikit-opt](https://github.com/guofei9987/scikit-opt) for metaheuristic methods including PSO. 
+> **NOTICE**: I am not actively maintaining this repository anymore. My research interests have changed in the past few years.
+> I highly recommend checking out [scikit-opt](https://github.com/guofei9987/scikit-opt) for metaheuristic methods including PSO.
 
 PySwarms is an extensible research toolkit for particle swarm optimization
 (PSO) in Python.
@@ -82,8 +95,8 @@ $ dnf install python3-pyswarms
 
 ## Running in a Vagrant Box
 
-To run PySwarms in a Vagrant Box, install Vagrant by going to 
-https://www.vagrantup.com/downloads.html and downloading the proper packaged from the Hashicorp website. 
+To run PySwarms in a Vagrant Box, install Vagrant by going to
+https://www.vagrantup.com/downloads.html and downloading the proper packaged from the Hashicorp website.
 
 Afterward, run the following command in the project directory:
 
@@ -92,7 +105,7 @@ $ vagrant provision
 $ vagrant up
 $ vagrant ssh
 ```
-Now you're ready to develop your contributions in a premade virtual environment. 
+Now you're ready to develop your contributions in a premade virtual environment.
 
 ## Basic Usage
 
@@ -239,7 +252,7 @@ Or in 3D!
 pos_history_3d = m.compute_history_3d(optimizer.pos_history) # preprocessing
 animation3d = plot_surface(pos_history=pos_history_3d,
                            mesher=m, designer=d,
-                           mark=(0,0,0))    
+                           mark=(0,0,0))
 ```
 
 ![Surface](https://i.imgur.com/kRb61Hx.gif)
@@ -309,7 +322,7 @@ Not on the list? Ping us in the Issue Tracker!
 * Nandy, Abhishek, and Manisha Biswas., "Applying Python to Reinforcement Learning." *Reinforcement Learning*. Apress, Berkeley, CA, 2018. 89-128.
 * Benedetti, Marcello, et al., "A generative modeling approach for benchmarking and training shallow quantum circuits." *arXiv preprint arXiv:1801.07686* (2018).
 * Vrbančič et al., "NiaPy: Python microframework for building nature-inspired algorithms." Journal of Open Source Software, 3(23), 613, https://doi.org/10.21105/joss.00613
-* Häse, Florian, et al. "Phoenics: A Bayesian optimizer for chemistry." *ACS Central Science.* 4.9 (2018): 1134-1145. 
+* Häse, Florian, et al. "Phoenics: A Bayesian optimizer for chemistry." *ACS Central Science.* 4.9 (2018): 1134-1145.
 * Szynkiewicz, Pawel. "A Comparative Study of PSO and CMA-ES Algorithms on Black-box Optimization Benchmarks." *Journal of Telecommunications and Information Technology* 4 (2018): 5.
 * Mistry, Miten, et al. "Mixed-Integer Convex Nonlinear Optimization with Gradient-Boosted Trees Embedded." Imperial College London (2018).
 * Vishwakarma, Gaurav. *Machine Learning Model Selection for Predicting Properties of High Refractive Index Polymers* Dissertation. State University of New York at Buffalo, 2018.
@@ -326,10 +339,10 @@ Not on the list? Ping us in the Issue Tracker!
 * Linker, F. "Industrial Benchmark for Fuzzy Particle Swarm Reinforcement Learning," Liezpic University (2020)
 * Vetter, A. Yan, C. et al. "Computational rule-based approach for corner correction of non-Manhattan geometries in mask aligner photolithography," Optics (2019). vol. 27, issue 22: 32523-32535 https://doi.org/10.1364/OE.27.032523
 * Wang, Q., Megherbi, N., Breckon T.P., "A Reference Architecture for Plausible Thread Image Projection (TIP) Within 3D X-ray Computed Tomography Volumes" https://arxiv.org/abs/2001.05459
-* Menke, Tim, Hase, Florian, et al. "Automated discovery of superconducting circuits and its application to 4-local coupler design," arxiv preprint: https://arxiv.org/abs/1912.03322 
+* Menke, Tim, Hase, Florian, et al. "Automated discovery of superconducting circuits and its application to 4-local coupler design," arxiv preprint: https://arxiv.org/abs/1912.03322
 
 ## Others
-Like it? Love it? Leave us a star on [Github] to show your appreciation! 
+Like it? Love it? Leave us a star on [Github] to show your appreciation!
 
 [Github]: https://github.com/ljvmiranda921/pyswarms
 
